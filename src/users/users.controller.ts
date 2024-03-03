@@ -7,7 +7,11 @@ export class UserController {
 
     @Post()
     createUser(@Body() user: UserDto): UserDto {
-        return { username: 'test', password: 'test'};
+        user.createAt = new Date();
+        user.id = 1;
+        user.updatedAt = new Date();
+        console.log('user',user);
+        return UserDto.plainToClass(user);
     }
     @Get(':id')
     getUserById(@Param('id') id: number){
